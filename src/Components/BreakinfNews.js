@@ -23,7 +23,7 @@ const BreakinfNews = () => {
     
   return (
     <View>
-      {newQuery.isLoading ? <Loader /> :
+      {newQuery.isLoading ? <Loader label='Loading Breaking News' /> :
       <View>
       <MiniHeader title='Breaking News' />
       <Carousel

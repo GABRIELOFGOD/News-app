@@ -28,7 +28,7 @@ const RecommendedNews = () => {
   return (
     <View>
         {recommendedQuery.isLoading ?
-        <Loader /> :
+        <Loader label='Please wait' /> :
         <View>
             <MiniHeader title='Recommended News' />
             <ScrollView>

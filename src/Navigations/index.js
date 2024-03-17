@@ -68,7 +68,7 @@ const AppNavigation = () => {
   return (
     <NavigationContainer>
         <Stack.Navigator
-            initialRouteName='Splash'
+            initialRouteName='HomeTab'
             screenOptions={{
                 headerShown: false
             }}
