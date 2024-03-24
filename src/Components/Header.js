@@ -23,7 +23,7 @@ const Header = () => {
         >Gab Report</Text>
         
         <View className='flex-row space-x-4'>
-            <Switch value={colorScheme == 'dark'} onChange={toggleColorScheme} />
+            <Switch value={colorScheme === 'dark'} onChange={toggleColorScheme} />
             <TouchableOpacity
                 className='rounded-full h-[40px] my-auto justify-center items-center w-[40px] bg-gray-200 dark:bg-green-900'
                 onPress={() => navigation.navigate('Search')}

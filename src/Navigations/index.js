@@ -11,6 +11,7 @@ import SavedScreen from '../Screen/SavedScreen'
 import SplashScreen from '../Screen/SplashScreen'
 import WelcomeScreen from '../Screen/WelcomeScreen'
 import SearchScreen from '../Screen/SearchScreen'
+import NewsDetailsScreen from '../Screen/NewsDetailsScreen'
 import { Ionicons } from '@expo/vector-icons'
 
 const Tab = createBottomTabNavigator();
@@ -68,7 +69,7 @@ const AppNavigation = () => {
   return (
     <NavigationContainer>
         <Stack.Navigator
-            initialRouteName='HomeTab'
+            initialRouteName='Splash'
             screenOptions={{
                 headerShown: false
             }}
@@ -79,6 +80,7 @@ const AppNavigation = () => {
                 animation: 'slide_from_bottom'
             }} />
             <Stack.Screen name='HomeTab' component={TabNavigator} />
+            <Stack.Screen name='NewsDetails' component={NewsDetailsScreen} />
             {/* <Stack.Screen name='Splash' component={SplashScreen} />
             <Stack.Screen name='Splash' component={SplashScreen} /> */}
         </Stack.Navigator>

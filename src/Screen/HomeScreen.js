@@ -1,8 +1,6 @@
 import { View, Text } from 'react-native'
 import React, { useState } from 'react'
 import { useColorScheme } from 'nativewind'
-import { useQuery } from '@tanstack/react-query'
-import { fetchBreakingNews, fetchRecommendedNews } from  '../utils/context'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { StatusBar } from 'expo-status-bar'
 import Header from '../Components/Header'
@@ -12,26 +10,16 @@ import RecommendedNews from '../Components/RecommendedNews'
 
 const HomeScreen = () => {
 
-  const { colorSchema, toggleColorScheme } = useColorScheme();
+  const { colorScheme, toggleColorScheme } = useColorScheme();
   const [recommendedNews, setRecommendedNews] = useState([])
-
-  // =================== FETCHING BREAKING NEWS ===================== //
-  // const { isPending, isError, data, error } = useQuery({
-  //   queryKey: ['breakingNews'],
-  //   queryFn: [fetchBreakingNews],
-  // });
-
-  // if(data){
-  //   setBreakingNews(data.articles)
-  // }
 
   const [fontLoaded, fontError ] = useFonts({
     spaceFont: require('../fonts/SpaceGrotesk-Medium.ttf')
   })
   
   return (
-    <SafeAreaView>
-      <StatusBar style={colorSchema == 'dark' ? 'light' : 'dark'} />
+    <SafeAreaView className='bg-white dark:bg-neutral-800'>
+      <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       <Header />
       <View>
         <BreakinfNews />

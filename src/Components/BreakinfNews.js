@@ -25,22 +25,22 @@ const BreakinfNews = () => {
     <View>
       {newQuery.isLoading ? <Loader label='Loading Breaking News' /> :
       <View>
-      <MiniHeader title='Breaking News' />
-      <Carousel
-        data={newQuery.data.articles}
-        renderItem={({item}) => (
-          <BreakingCard item={item} />
-        )}
-        firstItem={1}
-        inactiveSlideScale={0.8}
-        sliderWidth={width}
-        itemWidth={width * 0.8}
-        slideStyle={{
-          display: 'flex',
-          alignItems: 'center'
-        }}
-      />
-  </View>
+        <MiniHeader title='Breaking News' />
+        <Carousel
+          data={newQuery.data.articles}
+          renderItem={({item}) => (
+            <BreakingCard item={item} />
+          )}
+          firstItem={1}
+          inactiveSlideScale={0.8}
+          sliderWidth={width}
+          itemWidth={width * 0.8}
+          slideStyle={{
+            display: 'flex',
+            alignItems: 'center'
+          }}
+        />
+      </View>
       }
     </View>
   )

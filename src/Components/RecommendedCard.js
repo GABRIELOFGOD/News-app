@@ -1,10 +1,17 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import { Image } from 'react-native'
 
 import {  heightPercentageToDP as hp } from 'react-native-responsive-screen'
+import { BookmarkSquareIcon } from 'react-native-heroicons/solid'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
-const RecommendedCard = ({item}) => {
+const RecommendedCard = ({item, index}) => {
+  const [isBooked, setBook] = useState([])
+
+  // useEffect(async() => {
+  //   const isInStorage = await AsyncStorage.getItem('bookmarkedNews')
+  // }, [])
 
   const dateFormatter = dated => {
     const option = {
@@ -17,6 +24,33 @@ const RecommendedCard = ({item}) => {
     const date = new Date(dated)
     return date.toLocaleDateString(undefined, option)
   }
+
+  const bookmarkChanger = async (item) => {
+    try {
+      const checkBookmarked = await AsyncStorage.getItem('bookmarkedNews')
+      const bookmarkedNews = checkBookmarked ? JSON.parse(checkBookmarked) : []
+
+      const thisNewsBookmarked = bookmarkedNews.some(bookMarkArticle => {
+        bookMarkArticle?.url == item?.url
+      })
+
+      if(!thisNewsBookmarked){
+        const newSaved = await bookmarkedNews.push(item)
+        await AsyncStorage.setItem('bookmarkedNews', JSON.stringify(newSaved))
+      } else {
+        const removeFromBookMark = bookmarkedNews.filter(someNews => {
+          someNews.url != item.url
+        })
+        await AsyncStorage.setItem('bookmarkedNews', JSON.stringify(removeFromBookMark))
+        const updatedStatus = [...isBooked]
+        updatedStatus[index] = false
+        setBook(updatedStatus)
+      }
+
+    } catch (error) {
+      console.log('An error occur from bookmark', error)
+    }
+  }
   
   return (
     <View className='rounded-md flex-row overflow-hidden mx-3 my-1 bg-white dark:bg-neutral-700'>
@@ -25,11 +59,11 @@ const RecommendedCard = ({item}) => {
             uri: item?.urlToImage
         }}
         style={{
-            height: hp(10),
+            height: hp(12),
             width: hp(10)
         }}
       />
-      <View className='space-y-1 w-[70%] justify-center px-3'>
+      <View className='space-y-1 w-[65%] justify-center px-3'>
         <Text
           className='text-sm font-semibold text-gray-900 dark:text-neutral-300'
           style={{
@@ -37,7 +71,7 @@ const RecommendedCard = ({item}) => {
           }}
         >
           {item?.author?.length > 20 ? 
-            item?.author?.slice(0, 20):
+            item?.author?.slice(0, 20) + '...':
             item?.author
           }
         </Text>
@@ -49,7 +83,7 @@ const RecommendedCard = ({item}) => {
           }}
         >
           {item?.title?.length > 50 ?
-            item?.title?.slice(0, 50):
+            item?.title?.slice(0, 50) + '...':
             item?.title
           }
         </Text>
@@ -64,11 +98,12 @@ const RecommendedCard = ({item}) => {
       </View>
 
       {/* ================ BOOKMARK VIEW =================== */}
-      <View>
-        {/* <Text>
-          <
-        </Text> */}
-      </View>
+      <TouchableOpacity
+        className='my-auto pr-2'
+        onPress={() => bookmarkChanger(item, index)}
+      >
+        <BookmarkSquareIcon color={isBooked[index] ? 'green' : 'gray'} />
+      </TouchableOpacity>
     </View>
   )
 }

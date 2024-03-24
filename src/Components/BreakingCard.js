@@ -1,11 +1,13 @@
 import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native'
 import React from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
+import { useNavigation } from '@react-navigation/native'
 const { width, height } = Dimensions.get('window')
 
 const BreakingCard = ({item}) => {
+  const navigation = useNavigation()
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('NewsDetails', item)}>
       <View>
         <Image
           source={{

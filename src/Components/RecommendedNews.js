@@ -5,8 +5,10 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchRecommendedNews } from '../utils/context'
 import Loader from './Loader'
 import RecommendedCard from './RecommendedCard'
+import { useNavigation } from '@react-navigation/native'
 
 const RecommendedNews = () => {
+    const navigation = useNavigation()
 
     const recommendedQuery = useQuery({
         queryKey: ['RecommendedNews'],
@@ -19,8 +21,8 @@ const RecommendedNews = () => {
 
     const FRenderItems = ({item, index}) => {
         return(
-            <TouchableOpacity key={index}>
-                <RecommendedCard item={item}/>
+            <TouchableOpacity key={index} onPress={() => navigation.navigate('NewsDetails', item)}>
+                <RecommendedCard index={index} item={item}/>
             </TouchableOpacity>
         )
     }
