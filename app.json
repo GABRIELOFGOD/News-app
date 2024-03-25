@@ -4,10 +4,10 @@
     "slug": "news",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/images/gr.jpg",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/images/reporter.jpg",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./src/images/reporter.jpg",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.gabrielofgod.news"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./src/images/gr.jpg"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ffd1f9a9-6e33-406f-ba61-ae3068bb8d60"
+      }
     }
   }
 }

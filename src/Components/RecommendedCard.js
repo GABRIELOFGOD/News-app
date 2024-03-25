@@ -90,7 +90,7 @@ const RecommendedCard = ({item, index}) => {
 
         {/* ============ FORMATTED DATE ================= */}
         <Text
-          className='text-xs text-gray-500 dark:text-neutral-900'
+          className='text-xs text-gray-500 dark:text-neutral-300'
           style={{
             fontFamily: 'spaceFont'
           }}

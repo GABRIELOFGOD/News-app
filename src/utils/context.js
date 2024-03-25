@@ -10,7 +10,7 @@ const recommendedUrl = `${baseUrl}/top-headlines?country=us&category=technology&
 
 const searchUrl = (query) => `${baseUrl}/everything?q=${query}&apiKey=${api_key}`
 
-const discoverQueryUri = query => `${baseUrl}/top-headlines?country=us&category=${query}&apiKey=${api_key}`
+export const discoverQueryUri = query => `${baseUrl}/top-headlines?country=us&category=${query}&apiKey=${api_key}`
 
 const newApiCall = async (endpoints, params) => {
     const options = {

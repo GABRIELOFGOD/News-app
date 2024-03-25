@@ -38,9 +38,9 @@ const SearchScreen = () => {
   
   const FRenderItems = ({item, index}) => {
     return(
-        <TouchableOpacity key={index}>
-            <RecommendedCard index={index} item={item}/>
-        </TouchableOpacity>
+      item?.title != '[Removed]' && <TouchableOpacity key={index} onPress={() => navigation.navigate('NewsDetails', item)}>
+        <RecommendedCard index={index} item={item}/>
+      </TouchableOpacity>
     )
   }
 
@@ -49,7 +49,7 @@ const SearchScreen = () => {
     <SafeAreaView className='bg-white flex-1 dark:bg-black'>
       <View className='bg-gray-100 justify-between flex-row mx-4 py-2 rounded-full'>
         <TextInput onChangeText={handleChangeDebounce} placeholder='Search for your news...' placeholderTextColor='gray' className='px-4 text-base text-black' />
-        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+        <TouchableOpacity className='mr-3' onPress={() => navigation.navigate('Home')}>
           <XMarkIcon size={25} color='green' strokeWidth={3} />
         </TouchableOpacity>
       </View>

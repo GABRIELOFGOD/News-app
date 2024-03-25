@@ -51,7 +51,7 @@ const SplashScreen = () => {
           style={{
             fontFamily: 'spaceFont'
           }}
-        >start news</Text>
+        >gab report</Text>
       </View>
     </ImageBackground>
   )

@@ -77,7 +77,8 @@ const AppNavigation = () => {
             <Stack.Screen name='Splash' component={SplashScreen} />
             <Stack.Screen name='Welcome' component={WelcomeScreen} />
             <Stack.Screen name='Search' component={SearchScreen} options={{
-                animation: 'slide_from_bottom'
+                animation: 'slide_from_bottom',
+                animationDuration: 500
             }} />
             <Stack.Screen name='HomeTab' component={TabNavigator} />
             <Stack.Screen name='NewsDetails' component={NewsDetailsScreen} />

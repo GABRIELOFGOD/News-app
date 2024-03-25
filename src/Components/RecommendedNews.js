@@ -21,7 +21,7 @@ const RecommendedNews = () => {
 
     const FRenderItems = ({item, index}) => {
         return(
-            <TouchableOpacity key={index} onPress={() => navigation.navigate('NewsDetails', item)}>
+            item?.title != '[Removed]' && <TouchableOpacity key={index} onPress={() => navigation.navigate('NewsDetails', item)}>
                 <RecommendedCard index={index} item={item}/>
             </TouchableOpacity>
         )

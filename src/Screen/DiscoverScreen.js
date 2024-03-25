@@ -16,40 +16,26 @@ const DiscoverScreen = () => {
   const navigation = useNavigation()
   const [activeQuery, setActiveQuery] = useState('business')
   const [presentData, setPresentData] = useState([])
+  const [theFun, setTheFun] = useState()
 
-  const discoverFetcher = () => fetchDiscoverNews(activeQuery)
-
+  const discoverFetcher = async() => await fetchDiscoverNews(activeQuery)
+  
   const discoverQuery = useQuery({
     queryKey: ['DiscoverQuery'],
-    queryFn: discoverFetcher
+    queryFn: discoverFetcher,
+    enabled: false
   })
 
   const handleCategory = category => {
     setActiveQuery(category.category)
-    setPresentData([])
-  }
-
-  useEffect(() => {
-    setPresentData(discoverQuery.data?.articles)
-  }, [presentData])
-
-  // const renderDiscovery = ({item, index}) => {
-  //   return (
-  //     <TouchableOpacity>
-  //       <DiscoverCard/>
-  //     </TouchableOpacity>
-  //   )
-  // }
-
-  if(discoverQuery.error){
-    console.log('Error fetching Discover query', discoverQuery.error)
+    discoverQuery.refetch()
   }
 
   const FRenderItems = ({item, index}) => {
     return(
-        <TouchableOpacity key={index}>
-            <RecommendedCard index={index} item={item}/>
-        </TouchableOpacity>
+      item?.title != '[Removed]' && <TouchableOpacity key={index} onPress={() => navigation.navigate('NewsDetails', item)}>
+        <RecommendedCard index={index} item={item}/>
+      </TouchableOpacity>
     )
   }
   
@@ -86,11 +72,12 @@ const DiscoverScreen = () => {
               <MiniHeader view='1' title={`Discover ${activeQuery} News`} />
               <ScrollView>
                 <FlatList
-                    data={presentData}
+                    data={discoverQuery?.data?.articles}
                     nestedScrollEnabled={true}
                     scrollEnabled={false}
                     showsVerticalScrollIndicator={false}
                     keyExtractor={(item, index) => index.toString()}
+                    key={presentData?.url}
                     renderItem={FRenderItems}
                 />
               </ScrollView>
